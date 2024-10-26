@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Lightspeed Filter Checker</title>
+</head>
+
+<body>
+  <div class="desc">
+    <h1>Lightspeed Filter Checker</h1>
+    <p>Results will show the unblocked domains!</p>
+  </div>
+  <textarea id="urls" rows="5" placeholder="Enter one URL per line..."></textarea><br>
+  <button onclick="checkLinks()">Check Links</button>
+  <div id="loading">Fetching...</div>
+  <div id="progress-container">
+    <div id="progress-bar"></div>
+  </div>
+  <div id="result"></div>
+
+  <script>
+    async function checkLinks() {
+      const resultDiv = document.getElementById('result');
+      const loadingDiv = document.getElementById('loading');
+      const progressContainer = document.getElementById('progress-container');
+      const progressBar = document.getElementById('progress-bar');
+
+      resultDiv.innerHTML = '';
+      loadingDiv.style.display = 'block';
+      progressContainer.style.display = 'block';
+      progressBar.style.width = '0%';
+
+      const urls = document.getElementById('urls').value.split('\n').map(url => url.trim());
+      const totalUrls = urls.length;
+
+      const response = await fetch('/check-links', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ urls })
+      });
+
+      const data = await response.json();
+
+      loadingDiv.style.display = 'none';
+      progressContainer.style.display = 'none';
+
+      resultDiv.innerHTML = data.unblocked.join('<br>') || 'No unblocked domains found.';
+    }
+
+    const progressSource = new EventSource('/progress');
+    progressSource.onmessage = function (event) {
+      const progress = JSON.parse(event.data);
+      const progressBar = document.getElementById('progress-bar');
+      progressBar.style.width = progress.percentage + '%';
+    };
+  </script>
+</body>
+
+</html>

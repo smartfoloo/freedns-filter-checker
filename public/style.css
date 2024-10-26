@@ -1,0 +1,109 @@
+:root {
+  --background: #11111b;
+  --background2: #181825;
+  --background3: #1e1e2e;
+  --highlight: #8aadf4;
+  --text-color: #cdd6f4;
+  --loading-color: #f9e2af;
+  --progress-color: #89b4fa;
+  --button-hover: #91d7e3;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: var(--background);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0px;
+  color: var(--highlight);
+}
+
+p {
+  margin: 0px;
+}
+
+.desc {
+  margin: 30px 0px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+textarea {
+  width: 100%;
+  max-width: 500px;
+  height: 100px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--background2);
+  color: var(--text-color);
+  font-size: 1em;
+  resize: none;
+  margin-bottom: 10px;
+  outline: none;
+  font-family: inherit;
+}
+
+button {
+  background-color: var(--highlight);
+  color: var(--text-color);
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: var(--background);
+}
+
+button:hover {
+  background-color: var(--button-hover);
+}
+
+#loading {
+  margin-top: 10px;
+  font-style: italic;
+  color: var(--loading-color);
+}
+
+#progress-container {
+  width: 100%;
+  max-width: 500px;
+  background-color: var(--background3);
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 10px;
+  display: none;
+}
+
+#progress-bar {
+  width: 0%;
+  height: 20px;
+  background-color: var(--progress-color);
+  transition: width 0.4s ease;
+}
+
+#result {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 500px;
+  padding: 10px;
+  background-color: var(--background2);
+  border-radius: 5px;
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+#loading {
+  display: none;
+}
