@@ -26,6 +26,10 @@ h1 {
   color: var(--highlight);
 }
 
+h3 {
+  margin: 0px;
+}
+
 p {
   margin: 0px;
 }
@@ -106,4 +110,10 @@ button:hover {
 
 #loading {
   display: none;
+}
+
+#result {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
