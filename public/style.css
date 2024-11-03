@@ -26,6 +26,10 @@ h1 {
   color: var(--highlight);
 }
 
+h2 {
+  margin: 5px 0px;
+}
+
 h3 {
   margin: 0px;
 }
@@ -35,25 +39,7 @@ p {
 }
 
 a {
-  text-decoration: none;
   color: var(--text-color);
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.nav a {
-  padding: 10px;
-  border-radius: 10px;
-  transition: 250ms;
-  font-weight: 700;
-}
-
-.nav a:hover {
-  background: var(--background2);
 }
 
 .desc {
@@ -71,7 +57,7 @@ textarea {
   padding: 10px;
   border: none;
   border-radius: 5px;
-  background-color: var(--background2);
+  background-color: var(--background3);
   color: var(--text-color);
   font-size: 1em;
   resize: none;
@@ -124,7 +110,7 @@ button:hover {
   width: 100%;
   max-width: 500px;
   padding: 10px;
-  background-color: var(--background2);
+  background-color: var(--background3);
   border-radius: 5px;
   font-size: 1em;
   line-height: 1.5;

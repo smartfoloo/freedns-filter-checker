@@ -9,26 +9,18 @@
 </head>
 
 <body>
-  <div class="nav">
-    <a href="/">
-      Filter Checker
-    </a>
-    <a href="./freedns.html">
-      FreeDNS Domain Extractor
-    </a>
-  </div>
   <div class="desc">
     <h1>FreeDNS Filter Checker</h1>
     <p>Only Lightspeed Filter is supported.</p>
+    <p>Refer to <a href="https://github.com/smartfoloo/freedns-filter-checker/blob/main/README.md">the documentation</a> for a tutorial!</p>
   </div>
-  <textarea id="urls" rows="5" placeholder="Enter one URL per line..."></textarea><br>
+  <textarea id="inputText" rows="5" placeholder="Paste your FreeDNS text..."></textarea><br>
   <button onclick="checkLinks()">Check Links</button>
   <div id="loading">Fetching...</div>
   <div id="progress-container">
     <div id="progress-bar"></div>
   </div>
   <div id="result"></div>
-
   <script>
     async function checkLinks() {
       const resultDiv = document.getElementById('result');
@@ -41,8 +33,12 @@
       progressContainer.style.display = 'block';
       progressBar.style.width = '0%';
 
-      const urls = document.getElementById('urls').value.split('\n').map(url => url.trim()).filter(url => url);
-      if (urls.length === 0) {
+      const inputText = document.getElementById('inputText').value;
+      const domainRegex = /([a-zA-Z0-9-]+\.[a-zA-Z]{2,})/g;
+      const extractedDomains = inputText.match(domainRegex);
+      const uniqueDomains = [...new Set(extractedDomains || [])]; // Add fallback for empty match
+
+      if (uniqueDomains.length === 0) {
         resultDiv.innerHTML = 'Please enter URLs to check.';
         loadingDiv.style.display = 'none';
         progressContainer.style.display = 'none';
@@ -52,7 +48,7 @@
       const response = await fetch('/check-links', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ urls })
+        body: JSON.stringify({ urls: uniqueDomains })
       });
 
       const data = await response.json();
@@ -71,6 +67,7 @@
       const progressBar = document.getElementById('progress-bar');
       progressBar.style.width = progress.percentage + '%';
     };
+
   </script>
 </body>
 
