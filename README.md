@@ -5,6 +5,7 @@ A Lightspeed filter checker for FreeDNS
 
 ```bash
 git clone https://github.com/smartfoloo/freedns-filter-checker.git
+cd freedns-filter-checker
 npm i
 npm start
 ```
