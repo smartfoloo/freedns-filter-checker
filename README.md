@@ -1,10 +1,11 @@
 # FreeDNS Filter Checker
-A mass filter checker based on filterchecker by rare1k. Useful for finding unblocked FreeDNS Domains.
+A Lightspeed filter checker for FreeDNS
 
 ## Running Locally
 
 ```bash
 git clone https://github.com/smartfoloo/freedns-filter-checker.git
+cd freedns-filter-checker
 npm i
 npm start
 ```
