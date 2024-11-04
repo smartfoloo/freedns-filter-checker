@@ -34,7 +34,7 @@
       progressBar.style.width = '0%';
 
       const inputText = document.getElementById('inputText').value;
-      const domainRegex = /([a-zA-Z0-9-]+\.[a-zA-Z]{2,})/g;
+      const domainRegex = /([a-zA-Z0-9-]+(\.[a-zA-Z]{2,}){1,2})/g; // Updated regex
       const extractedDomains = inputText.match(domainRegex);
       const uniqueDomains = [...new Set(extractedDomains || [])]; // Add fallback for empty match
 
@@ -67,7 +67,6 @@
       const progressBar = document.getElementById('progress-bar');
       progressBar.style.width = progress.percentage + '%';
     };
-
   </script>
 </body>
 
